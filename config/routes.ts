@@ -16,6 +16,24 @@ export default [
     ],
   },
   { name: '查询表格', icon: 'table', path: '/list', component: './TableList' },
+  {
+    path: '/tool',
+    name: '实用工具',
+    icon: 'tool',
+    routes: [
+      { path: '/tool', redirect: '/tool/play' },
+      {
+        path: '/tool/play',
+        name: '播放器',
+        component: './Tool/Play',
+      },
+      {
+        path: '/tool/request',
+        name: 'HTTP测试',
+        component: './Tool/Request',
+      },
+    ],
+  },
   { path: '/', redirect: '/welcome' },
   { path: '*', layout: false, component: './404' },
 ];

@@ -5,9 +5,10 @@ import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
-import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
+import {currentUser as queryCurrentUser, LoginUser} from './services/auth';
 import React from 'react';
 import { AvatarDropdown, AvatarName } from './components/RightContent/AvatarDropdown';
+import {message} from "antd";
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -16,15 +17,22 @@ const loginPath = '/user/login';
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
-  currentUser?: API.CurrentUser;
+  currentUser?: LoginUser;
   loading?: boolean;
-  fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
+  fetchUserInfo?: () => Promise<LoginUser | undefined>;
 }> {
   const fetchUserInfo = async () => {
     try {
-      const msg = await queryCurrentUser({
-        skipErrorHandler: true,
-      });
+      const token = localStorage.getItem("szrToken");
+      if (!token) {
+        history.push(loginPath);
+        return;
+      }
+      const msg = await queryCurrentUser({token});
+      if (msg.code !== 0) {
+        message.info(msg.msg);
+        throw msg.msg;
+      }
       return msg.data;
     } catch (error) {
       history.push(loginPath);
@@ -122,6 +130,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * 它基于 axios 和 ahooks 的 useRequest 提供了一套统一的网络请求和错误处理方案。
  * @doc https://umijs.org/docs/max/request#配置
  */
+const DOMAIN = process.env.NODE_ENV === 'production' ? 'http://43.143.159.11:7777' : 'http://43.143.159.11:7777';
 export const request = {
   ...errorConfig,
+  baseURL: `${DOMAIN}`
 };
