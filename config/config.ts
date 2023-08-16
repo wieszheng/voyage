@@ -12,6 +12,12 @@ export default defineConfig({
    * @doc https://umijs.org/docs/api/config#hash
    */
   hash: true,
+
+  title: 'APITest',
+
+  history: {
+    type: 'hash',
+  },
   /**
    * @name 兼容性设置
    * @description 设置 ie11 不一定完美兼容，需要检查自己使用的所有依赖
@@ -73,7 +79,7 @@ export default defineConfig({
    * @name layout 插件
    * @doc https://umijs.org/docs/max/layout-menu
    */
-  title: 'APITest',
+
   layout: {
     locale: true,
     ...defaultSettings,
@@ -119,13 +125,20 @@ export default defineConfig({
       async: true,
     },
   ],
-  //================ pro 插件配置 =================
+  // //================ pro 插件配置 =================
   presets: ['umi-presets-pro'],
   /**
    * @name openAPI 插件的配置
    * @description 基于 openapi 的规范生成serve 和mock，能减少很多样板代码
    * @doc https://pro.ant.design/zh-cn/docs/openapi/
    */
+  favicons: [
+    // 完整地址
+    // 'https://domain.com/favicon.ico',
+    // 此时将指向 `/favicon.png` ，确保你的项目含有 `public/favicon.png`
+    '/logo.svg'
+  ],
+
   openAPI: [
     {
       requestLibPath: "import { request } from '@umijs/max'",

@@ -58,6 +58,8 @@ export async function getInitialState(): Promise<{
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   return {
+    siderWidth: 216,
+
     actionsRender: () => [],
     avatarProps: {
       src: initialState?.currentUser?.avatar,
@@ -69,6 +71,30 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     // waterMarkProps: {
     //   content: initialState?.currentUser?.name,
     // },
+    token: {
+      colorBgAppListIconHover: 'rgba(0,0,0,0.06)',
+      colorTextAppListIconHover: 'rgba(255,255,255,0.95)',
+      colorTextAppListIcon: 'rgba(255,255,255,0.85)',
+      sider: {
+        colorBgCollapsedButton: '#fff',
+        colorTextCollapsedButtonHover: 'rgba(0,0,0,0.65)',
+        colorTextCollapsedButton: 'rgba(0,0,0,0.45)',
+        colorMenuBackground: '#232137',
+        colorBgMenuItemCollapsedHover: 'rgba(0,0,0,0.06)',
+        colorBgMenuItemCollapsedSelected: 'rgba(0,0,0,0.15)',
+        colorBgMenuItemCollapsedElevated: 'rgba(0,0,0,0.85)',
+        colorMenuItemDivider: 'rgba(255,255,255,0.15)',
+        colorBgMenuItemHover: 'rgba(0,0,0,0.06)',
+        colorBgMenuItemSelected: '#1670ff',
+        colorTextMenuSelected: '#fff',
+        colorTextMenuItemHover: 'rgba(255,255,255,0.75)',
+        colorTextMenu: 'rgba(255,255,255,0.75)',
+        colorTextMenuSecondary: 'rgba(255,255,255,0.65)',
+        colorTextMenuTitle: 'rgba(255,255,255,0.95)',
+        colorTextMenuActive: 'rgba(255,255,255,0.95)',
+        colorTextSubMenuSelected: '#fff',
+      },
+    },
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
