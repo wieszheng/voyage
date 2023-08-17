@@ -161,10 +161,15 @@ export default () => {
     }
     const res = await httpRequest(params);
     setLoading(false);
-    setResponse(res.data);
-    // if (auth.response(res, true)) {
-    //   setResponse(res.data);
-    // }
+    // setResponse(res.data);
+    if (res.code ===0) {
+      setResponse(res.data);
+    }
+    else {
+      notification.error({
+        message: res.msg,
+      });
+    }
   };
 
   const onDelete = (columnType, key) => {

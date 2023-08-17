@@ -137,7 +137,7 @@ export default class PlayerControlExample extends Component {
       <PageContainer title="播放器" breadcrumb={null}>
         <Card>
           <Row>
-            <Col span={14} style={{textAlign: 'center'}}>
+            <Col span={24} style={{justifyContent: 'center',display: 'flex'}}>
               <Player
                 ref={player => {
                   this.player = player;
@@ -147,8 +147,8 @@ export default class PlayerControlExample extends Component {
                 // src="https://videomaker-resources.ivh.qq.com/broadcast/Basic/video/e1d1ab25-c673-47cd-a9b1-29223a3298d8.webm"
                 // poster="https://video-react.js.org/assets/poster.png"
                 fluid={false}
-                width={800}
-                height={500}
+                width={900}
+                height={510}
               >
                 <BigPlayButton position="center"/>
                 <source src={this.state.playerSource}/>
@@ -159,13 +159,13 @@ export default class PlayerControlExample extends Component {
                   <PlayToggle/>
                   <CurrentTimeDisplay order={4.1}/>
                   <TimeDivider order={4.2}/>
-                  <PlaybackRateMenuButton rates={[5, 2, 1.5, 1, 0.5]} order={7.1}/>
+                  <PlaybackRateMenuButton rates={[5, 2, 1.5, 1.25, 1, 0.5]} order={7.1}/>
                 </ControlBar>
               </Player>
             </Col>
-            <Col span={9} style={{textAlign: 'center', fontSize: 20}}>
-              {JSON.stringify(this.state.player, null, 2)}
-            </Col>
+            {/*<Col span={9} style={{textAlign: 'center', fontSize: 20}}>*/}
+            {/*  {JSON.stringify(this.state.player, null, 2)}*/}
+            {/*</Col>*/}
           </Row>
         </Card>
         <Card style={{marginTop: 8}}>
@@ -176,7 +176,7 @@ export default class PlayerControlExample extends Component {
                    onChange={this.handleValueChange}
             />
           </Row>
-          <Row style={{marginTop: 10}}>
+          <Row style={{marginTop: 10,justifyContent: 'center'}}>
             <Button onClick={this.updatePlayerInfo} type="primary" size='large'
                     style={{marginRight: 30, width: 120}}>Update</Button>
             <Button onClick={this.play} type="primary" size='large' style={{marginRight: 30, width: 120}}>play</Button>

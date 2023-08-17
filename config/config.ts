@@ -12,9 +12,7 @@ export default defineConfig({
    * @doc https://umijs.org/docs/api/config#hash
    */
   hash: true,
-
   title: 'APITest',
-
   history: {
     type: 'hash',
   },
@@ -81,7 +79,7 @@ export default defineConfig({
    */
 
   layout: {
-    locale: true,
+    locale: false,
     ...defaultSettings,
   },
   /**
